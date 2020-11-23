@@ -1,2 +1,2 @@
 # ansible-dns-server
-ORTSOC Infra Playbook: DNS Server
+ORTSOC Infra Role: DNS Server
