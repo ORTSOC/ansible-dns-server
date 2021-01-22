@@ -1,2 +1,17 @@
 ---
-# vars file for ansible-dns-server
+dns_records:
+  - type: A
+    name: ns1
+    value: 1.2.3.4
+  
+  - type: NS
+    name: @
+    value: ns1
+
+  - type: A
+    name: ns2
+    value: 2.3.4.5
+  
+  - type: NS
+    name: @
+    value: ns2
