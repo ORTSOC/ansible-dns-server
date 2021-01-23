@@ -1,2 +1,24 @@
 ---
-# tasks file for ansible-dns-server
+
+- name: install bind9
+  apt:
+    name: ["bind9", "bind9utils", "dnsutils"]
+    state: present
+    
+- name: delete default config files
+  file:
+    path: "/etc/bind/"
+    state: absent
+  with_items:
+    - bind.keys  
+    - db.127  
+    - db.empty  
+    - named.conf                
+    - named.conf.local    
+    - rndc.key
+    - db.0       
+    - db.255  
+    - db.local  
+    - named.conf.default-zones  
+    - named.conf.options  
+    - zones.rfc1918

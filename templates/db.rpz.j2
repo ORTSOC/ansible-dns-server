@@ -1,0 +1,20 @@
+$TTL 60
+@       IN      SOA     localhost. root.localhost.  (
+        6            ; serial
+        1h           ; refresh
+        30m          ; retry
+        1w           ; expiry
+        30m)         ; minimum
+
+
+; https://serverfault.com/a/842370
+
+@               IN      NS      localhost.
+
+localhost       IN      A       127.0.0.1
+
+; OVERRIDES
+x.x.x        CNAME   x.x.x
+x.x.x        CNAME   x.x.x
+x.x.x        CNAME   x.x.x
+x.x.x        CNAME   x.x.x
