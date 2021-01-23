@@ -5,7 +5,7 @@ dns_records:
     value: 1.2.3.4
   
   - type: NS
-    name: @
+    name: "@"
     value: ns1
 
   - type: A
@@ -13,5 +13,5 @@ dns_records:
     value: 2.3.4.5
   
   - type: NS
-    name: @
+    name: "@"
     value: ns2

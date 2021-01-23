@@ -1,46 +1,24 @@
 ---
----
-- name: Bind9 required installs
-  hosts: primary
 
-  tasks: 
-  - name: install bind9
-    become: yes
-    apt:
-      name: bind9
-      
-  - name: install bind9utils
-    become: yes
-    apt:
-      name: bind9utils
-      
-  - name: install bind9-doc
-    become: yes
-    apt:
-      name: bind9-doc
-      
-  - name: install dnsutils
-    become: yes
-    apt:
-      name: dnsutils
-      
-  - name: delete default config files
-    become: yes
-    file:
-      path: "/etc/bind/"
-      state: absent
-    with_items:
-      - bind.keys  
-      - db.127  
-      - db.empty  
-      - named.conf                
-      - named.conf.local    
-      - rndc.key
-      - db.0       
-      - db.255  
-      - db.local  
-      - named.conf.default-zones  
-      - named.conf.options  
-      - zones.rfc1918
-
-     
+- name: install bind9
+  apt:
+    name: ["bind9", "bind9utils", "dnsutils"]
+    state: present
+    
+- name: delete default config files
+  file:
+    path: "/etc/bind/"
+    state: absent
+  with_items:
+    - bind.keys  
+    - db.127  
+    - db.empty  
+    - named.conf                
+    - named.conf.local    
+    - rndc.key
+    - db.0       
+    - db.255  
+    - db.local  
+    - named.conf.default-zones  
+    - named.conf.options  
+    - zones.rfc1918

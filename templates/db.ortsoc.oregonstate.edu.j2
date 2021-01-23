@@ -1,8 +1,8 @@
-{{% import time %}}
+{{ import time }}
 
 $TTL    604800
 @       IN      SOA     X.x.X.  (
-        {% int(time.time()) %}      ; Serial
+        {{ int(time.time()) }}      ; Serial
         604800  ; Refresh
         86400   ; Retry
         2419200 ; Expire
@@ -13,10 +13,9 @@ $TTL    604800
 
 {% for r in dns_records %}
 
-	{% r.name %}     IN     {% r.type %}     {% r.value %} 
+{% r.name %}     IN     {% r.type %}     {% r.value %} 
 
 {% endfor %}
-
 
 ; test
 test            IN      A       1.2.3.4
