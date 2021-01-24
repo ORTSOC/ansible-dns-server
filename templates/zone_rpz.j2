@@ -1,7 +1,7 @@
 {{ import time }}
 $TTL 60
 @       IN      SOA     localhost. root.localhost.  (
-        {{ int(time.time()) }} ; serial
+        {{ import time; int(time.time()) }} ; serial
         1h                     ; refresh
         30m                    ; retry
         1w                     ; expiry

@@ -1,8 +1,7 @@
-{{ import time }}
 
 $TTL    604800
 @       IN      SOA     {{ primary_dns_server }}        {{ soa_mail_address }}  (
-        {{ int(time.time()) }} ; Serial
+        {{ import time; int(time.time()) }} ; Serial
         3h                     ; Refresh
         1h                     ; Retry
         1w                     ; Expire
