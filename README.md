@@ -11,5 +11,6 @@ ORTSOC Infra Role: DNS Server
 * `primary_dns_server`: The primary DNS server, as will be applied to the SOA record
 * `soa_mail_address`: The SOA mail address (e.g. `root.ortsoc.oregonstate.edu`)
 * `domain`: The top level domain used for the infrastructure, with a trailing `.` (e.g. `ortsoc.oregonstate.edu.`)
+* `forwarders`: List of upstream DNS servers
 
 Additionally, in the inventory file, a DNS server must have `dns_server_type=master` or `dns_server_type=slave`.

@@ -1,0 +1,10 @@
+options {
+    directory "/var/cache/bind";
+    forwarders {
+        {% for f in forwarders %}
+        {{ f }};
+        {% endfor %}
+    };
+    dnssec-validation auto;
+    listen-on-v6 { any; };
+};
