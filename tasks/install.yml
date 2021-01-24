@@ -10,11 +10,9 @@
     path: "/etc/bind/{{ item }}"
     state: absent
   with_items:
-    - bind.keys
     - db.127
     - db.empty
     - named.conf
-    - rndc.key
     - db.0
     - db.255
     - db.local
