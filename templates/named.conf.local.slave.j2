@@ -6,7 +6,7 @@ zone "{{ domain }}" {
 
 {% for ip_sub in dns_ip_subnets %}
 
-zone "{{ ip_sub.split(".")[::-1].join(".") }}.in-addr.arpa" {
+zone "{{ ".".join(ip_sub.split(".")[::-1]) }}.in-addr.arpa" {
         type master;
         file "slave/db.{{ ip_sub }}";
         masters { {{ primary_dns_server }}; };
