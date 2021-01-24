@@ -7,18 +7,17 @@
     
 - name: delete default config files
   file:
-    path: "/etc/bind/"
+    path: "/etc/bind/{{ item }}"
     state: absent
   with_items:
-    - bind.keys  
-    - db.127  
-    - db.empty  
-    - named.conf                
-    - named.conf.local    
+    - bind.keys
+    - db.127
+    - db.empty
+    - named.conf
     - rndc.key
-    - db.0       
-    - db.255  
-    - db.local  
-    - named.conf.default-zones  
-    - named.conf.options  
+    - db.0
+    - db.255
+    - db.local
+    - named.conf.default-zones
+    - named.conf.options
     - zones.rfc1918
