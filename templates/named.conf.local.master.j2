@@ -1,6 +1,6 @@
 zone "{{ domain }}" {
         type master;
-        file "/etc/bind/{{ domain }}";
+        file "/etc/bind/db.{{ domain }}";
 };
 
 {% for ip_sub in dns_ip_subnets %}
