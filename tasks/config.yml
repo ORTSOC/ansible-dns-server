@@ -2,31 +2,31 @@
 
 - name: generate named.conf.local (master)
   ansible.builtin.template:
-    - src: named.conf.local.master.j2
-    - dest: /etc/bind/named.conf.local
-    - owner: root
-    - group: bind
-    - mode: 0644
+    src: named.conf.local.master.j2
+    dest: /etc/bind/named.conf.local
+    owner: root
+    group: bind
+    mode: 0644
   when: dns_server_type == "master"
   notify: "restart bind9"
 
 - name: generate named.conf.local (slave)
   ansible.builtin.template:
-    - src: named.conf.local.slave.j2
-    - dest: /etc/bind/named.conf.local
-    - owner: root
-    - group: bind
-    - mode: 0644
+    src: named.conf.local.slave.j2
+    dest: /etc/bind/named.conf.local
+    owner: root
+    group: bind
+    mode: 0644
   when: dns_server_type == "slave"
   notify: "restart bind9"
 
 - name: generate domain zone
   ansible.builtin.template:
-    - src: zone_db.j2
-    - dest: /etc/bind/db.{{ domain }}
-    - owner: root
-    - group: root
-    - mode: 0644
+    src: zone_db.j2
+    dest: /etc/bind/db.{{ domain }}
+    owner: root
+    group: root
+    mode: 0644
   vars:
     ptr_zone: False
   when: dns_server_type == "master"
@@ -34,11 +34,11 @@
 
 - name: generate reverse lookup zones
   ansible.builtin.template:
-    - src: zone_db.j2
-    - dest: /etc/bind/db.{{ item }}
-    - owner: root
-    - group: root
-    - mode: 0644
+    src: zone_db.j2
+    dest: /etc/bind/db.{{ item }}
+    owner: root
+    group: root
+    mode: 0644
   vars:
     ptr_zone: True
   loop: "{{ dns_ip_subnets }}"
@@ -47,10 +47,10 @@
 
 - name: generate rpz
   ansible.builtin.template:
-    - src: zone_rpz.j2
-    - dest: /etc/bind/db.rpz
-    - owner: root
-    - group: root
-    - mode: 0644
+    src: zone_rpz.j2
+    dest: /etc/bind/db.rpz
+    owner: root
+    group: root
+    mode: 0644
   when: dns_server_type == "master"
   notify: "reload bind9"
