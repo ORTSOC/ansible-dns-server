@@ -1,0 +1,21 @@
+zone "{{ domain }}" {
+        type slave;
+        file "slave/{{ domain }}";
+        masters { {{ primary_dns_server }}; };
+};
+
+{% for ip_sub in dns_ip_subnets %}
+
+zone "{{ ip_sub.split(".")[::-1].join(".") }}.in-addr.arpa" {
+        type master;
+        file "slave/db.{{ ip_sub }}";
+        masters { {{ primary_dns_server }}; };
+};
+
+{% endfor %}
+
+zone "rpz" {
+        type master;
+        file "slave/db.rpz";
+        masters { {{ primary_dns_server }}; };
+};

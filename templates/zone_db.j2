@@ -1,0 +1,28 @@
+{{ import time }}
+
+$TTL    604800
+@       IN      SOA     {{ primary_dns_server }}        {{ soa_mail_address }}  (
+        {{ int(time.time()) }} ; Serial
+        3h                     ; Refresh
+        1h                     ; Retry
+        1w                     ; Expire
+        1h                     ; Negative Cache TTL
+)
+
+{% for ns in nameservers %}
+@       IN      NS      {{ ns }}
+{% endfor %}
+
+{% for r in dns_records %}
+
+        {% if ptr_zone and r.type == "A" and r.value.startswith(item) %}
+
+                {{ r.value.split(".")[-1] }}     IN     PTR     {{ r.name }}.{{ domain }}
+
+        {% elif not ptr_zone %}
+
+                {{ r.name }}     IN     {{ r.type }}     {{ r.value }} 
+
+        {% endif %}
+
+{% endfor %}

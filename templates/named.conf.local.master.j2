@@ -1,0 +1,18 @@
+zone "{{ domain }}" {
+        type master;
+        file "/etc/bind/{{ domain }}";
+};
+
+{% for ip_sub in dns_ip_subnets %}
+
+zone "{{ ip_sub.split(".")[::-1].join(".") }}.in-addr.arpa" {
+        type master;
+        file "/etc/bind/db.{{ ip_sub }}";
+};
+
+{% endfor %}
+
+zone "rpz" {
+        type master;
+        file "/etc/bind/db.rpz";
+};
