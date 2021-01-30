@@ -58,7 +58,7 @@
     owner: root
     group: root
     mode: 0644
-    validate: named-checkzone {{ ".".join(ip_sub.split(".")[::-1]) }}.in-addr.arpa %s
+    validate: named-checkzone {{ ".".join(item.split(".")[::-1]) }}.in-addr.arpa %s
   vars:
     ptr_zone: True
   loop: "{{ dns_ip_subnets }}"
