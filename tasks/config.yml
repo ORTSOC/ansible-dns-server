@@ -45,6 +45,7 @@
     owner: root
     group: root
     mode: 0644
+    validate: named-checkzone {{ domain }} %s
   vars:
     ptr_zone: False
   when: dns_server_type == "master"
@@ -57,6 +58,7 @@
     owner: root
     group: root
     mode: 0644
+    validate: named-checkzone {{ ".".join(ip_sub.split(".")[::-1]) }}.in-addr.arpa %s
   vars:
     ptr_zone: True
   loop: "{{ dns_ip_subnets }}"
@@ -70,5 +72,6 @@
     owner: root
     group: root
     mode: 0644
+    validate: named-checkzone rpz %s
   when: dns_server_type == "master"
   notify: "reload bind9"
