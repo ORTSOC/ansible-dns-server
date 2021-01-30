@@ -13,7 +13,7 @@ zone "{{ domain }}" {
 {% for ip_sub in dns_ip_subnets %}
 
 zone "{{ ".".join(ip_sub.split(".")[::-1]) }}.in-addr.arpa" {
-        type master;
+        type slave;
         file "slave/db.{{ ip_sub }}";
         masters {
                 {% for host in groups["dns"] %}
@@ -27,7 +27,7 @@ zone "{{ ".".join(ip_sub.split(".")[::-1]) }}.in-addr.arpa" {
 {% endfor %}
 
 zone "rpz" {
-        type master;
+        type slave;
         file "slave/db.rpz";
         masters {
                 {% for host in groups["dns"] %}
