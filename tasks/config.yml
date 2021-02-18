@@ -1,5 +1,14 @@
 ---
 
+- name: copy defaults
+  ansible.builtin.copy:
+    src: defaults
+    dest: /etc/default/bind9
+    owner: root
+    group: root
+    mode: 0644
+  notify: "restart bind9"
+
 - name: copy named.conf
   ansible.builtin.copy:
     src: named.conf
