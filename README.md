@@ -26,6 +26,13 @@ Role Variables
 - `dns_ip_subnets`: the IP subnet to allow DNS resolution on.
 - `nameservers`: list of DNS name servers that run this role.
 
+Inventory Host Variables
+------------
+
+- `dns_server_type`: specify if a DNS server is to be used as the master or slave. Options:
+    - `master`
+    - `slave`
+
 Example Playbook
 ----------------
 
@@ -65,6 +72,16 @@ forwarders:
   - 8.8.8.8
   - 8.8.4.4
 ```
+
+Example Inventory File
+--------
+```
+[dns]
+ns1.my.domain dns_server_type=master
+ns2.my.domain dns_server_type=slave
+ns3.my.domain dns_server_type=slave
+```
+
 License
 -------
 
