@@ -4,7 +4,7 @@ zone "{{ domain }}" {
         masters {
                 {% for host in groups["dns"] %}
                 {% if hostvars[host].dns_server_type == "master" %}
-                {{ hostvars[host].ansible_host }};
+                {{ hostvars[host].ansible_default_ipv4.address }};
                 {% endif %}
                 {% endfor %}
         };
@@ -18,7 +18,7 @@ zone "{{ ".".join(ip_sub.split(".")[::-1]) }}.in-addr.arpa" {
         masters {
                 {% for host in groups["dns"] %}
                 {% if hostvars[host].dns_server_type == "master" %}
-                {{ hostvars[host].ansible_host }};
+                {{ hostvars[host].ansible_default_ipv4.address }};
                 {% endif %}
                 {% endfor %}
         };
@@ -32,7 +32,7 @@ zone "rpz" {
         masters {
                 {% for host in groups["dns"] %}
                 {% if hostvars[host].dns_server_type == "master" %}
-                {{ hostvars[host].ansible_host }};
+                {{ hostvars[host].ansible_default_ipv4.address }};
                 {% endif %}
                 {% endfor %}
         };
