@@ -1,11 +1,13 @@
 ---
 
 - name: restart bind9
+  throttle: 1
   service:
     name: bind9
     state: restarted
 
 - name: reload bind9
+  throttle: 1
   service:
     name: bind9
     state: reloaded
