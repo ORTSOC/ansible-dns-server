@@ -12,10 +12,8 @@
   with_items:
     - db.127
     - db.empty
-    - named.conf
     - db.0
     - db.255
     - db.local
     - named.conf.default-zones
-    - named.conf.options
     - zones.rfc1918
